@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tick Analyzer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .box {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        select:focus, input:focus {
+            border-color: #4CAF50;
+        }
+
+        .indicator {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #FF5722;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+        .indicator:hover {
+            background-color: #E64A19;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45A049;
+        }
+
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tick Analyzer</h1>
+
+    <!-- Market Selection -->
+    <div class="box">
+        <label for="market">Market</label>
+        <select id="market">
+            <option value="vol10">Volatility Index 10</option>
+            <option value="vol25">Volatility Index 25</option>
+            <option value="vol50">Volatility Index 50</option>
+            <option value="vol75">Volatility Index 75</option>
+            <option value="vol100">Volatility Index 100</option>
+        </select>
+    </div>
+
+    <!-- Trade Type Selection -->
+    <div class="box">
+        <label for="tradeType">Trade Type</label>
+        <select id="tradeType">
+            <option value="riseFall">Rise / Fall</option>
+            <option value="upDown">Up / Down</option>
+            <option value="higherLower">Higher / Lower</option>
+            <option value="touchNoTouch">Touch / No Touch</option>
+            <option value="Matchersdiffers">Matchers/Differs</option>
+        </select>
+    </div>
+
+    <!-- Stake Input -->
+    <div class="box">
+        <label for="stake">Stake</label>
+        <input type="number" id="stake" placeholder="Enter your stake" />
+    </div>
+
+    <!-- Last Digit Prediction -->
+    <div class="box">
+        <label for="lastDigit">Last Digit Prediction</label>
+        <select id="lastDigit">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+    </div>
+
+    <!-- Moving Indicator -->
+    <div class="indicator" id="indicator">1</div>
+
+    <!-- Purchase Button -->
+    <button id="purchase">Purchase</button>
+
+    <!-- Result -->
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    const indicator = document.getElementById('indicator');
+    const result = document.getElementById('result');
+    const purchaseButton = document.getElementById('purchase');
+
+    // Update moving indicator
+    setInterval(() => {
+        const randomNum = Math.floor(Math.random() * 9) + 1;
+        indicator.textContent = randomNum;
+    }, 500);
+
+    // Handle purchase button click
+    purchaseButton.addEventListener('click', () => {
+        const lastDigit = document.getElementById('lastDigit').value;
+        result.textContent = "Processing...";
+
+        setTimeout(() => {
+            const win = Math.random() > 0.5; // Random win/loss
+            result.textContent = win ? `You Win! (Predicted: ${lastDigit})` : `You Lose! (Predicted: ${lastDigit})`;
+            result.style.color = win ? 'green' : 'red';
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
